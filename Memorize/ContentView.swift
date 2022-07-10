@@ -53,7 +53,7 @@ struct ContentView: View {
     
 }
 
-struct themeSelectorButtonView: View {
+private struct themeSelectorButtonView: View {
     var iconName: String
     var title: String
     
@@ -66,7 +66,7 @@ struct themeSelectorButtonView: View {
     }
 }
 
-struct CardView: View {
+private struct CardView: View {
     let card: MemoryGame<String>.Card
     let color: Color
     
@@ -91,9 +91,7 @@ struct CardView: View {
     }
 }
 
-
-
-struct ContentView_Previews: PreviewProvider {
+private struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()

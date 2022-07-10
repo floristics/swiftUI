@@ -9,7 +9,7 @@ import SwiftUI
 
 class EmojieMemoryGame: ObservableObject {
     
-    static let themes: Array<MemoryGame<String>.Theme> = [
+    private static let themes: Array<MemoryGame<String>.Theme> = [
         MemoryGame<String>.Theme(
             title: "Smiles",
             contentSet: ["😀", "😂", "😝", "🧐","😇", "🙃", "😚", "🤓","😫", "🙀", "👨‍🍳", "👩‍🌾"],
@@ -41,6 +41,22 @@ class EmojieMemoryGame: ObservableObject {
     }
     
     @Published private var model: MemoryGame<String>
+    
+    var title: String {
+        return model.theme.title
+    }
+    
+    var color: Color {
+        return convertThemeColor(model.theme.color)
+    }
+    
+    var score: Int {
+        return model.score
+    }
+    
+    var cards: Array<MemoryGame<String>.Card> {
+        return model.cards
+    }
     
     private static func getRandomTheme(currentTheme: MemoryGame<String>.Theme?) -> MemoryGame<String>.Theme {
         if let themeToExclude = currentTheme {
@@ -77,22 +93,6 @@ class EmojieMemoryGame: ObservableObject {
     
     func createNewGame() {
         model = EmojieMemoryGame.createMemoryGame(currentTheme: model.theme)
-    }
-    
-    var title: String {
-        return model.theme.title
-    }
-    
-    var color: Color {
-        return convertThemeColor(model.theme.color)
-    }
-    
-    var score: Int {
-        return model.score
-    }
-    
-    var cards: Array<MemoryGame<String>.Card> {
-        return model.cards
     }
     
     func choose(_ card: MemoryGame<String>.Card) {
